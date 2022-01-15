@@ -17,6 +17,10 @@
 \usepackage[english, german]{babel} 
 \usepackage{hyperref}
 
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+
 %----------------------------------------------------------------------------------------
 %	Literatur
 %----------------------------------------------------------------------------------------
@@ -65,7 +69,7 @@ style=trad-unsrt
 \acmConference{State of the Art Paper}{2022}{Mannheim, Germany}
 
 \begin{abstract}
-In diesem State of the Art Paper werden die einzelnen Phasen und Herangehensweisen eines Penetrationstest erläutert und dargestellt. Hierbei wird auf die einzelnen Besonderheiten der Phasen eingegangen und deren nutzen erläutert. Ebenfalls behandeln wir ein grundsätzliches Durchführungskonzept für Penetrationstests.
+In diesem State of the Art Paper werden die einzelnen Phasen und Herangehensweisen eines Penetrationstest erläutert und dargestellt. Hierbei wird auf die einzelnen Besonderheiten der Phasen eingegangen und deren Nutzen erläutert. Ebenfalls behandeln wir ein grundsätzliches Durchführungskonzept für Penetrationstests.
 \end{abstract}
 
 \keywords{Hacking, Gray-Hat, Pen-Test, Penetrationstesting, Phasen, Step-by-Step, Exploitation, Reconnaissance, Informationstechnik}
@@ -79,17 +83,18 @@ In diesem State of the Art Paper werden die einzelnen Phasen und Herangehensweis
 
 \section{Einführung in die Technik}
 
-Heutzutage stehen Netzwerkstrukturen von Unternehmen und öffentlichen Einrichtungen vielen Gefährdungen gegenüber. Im laufe der Zeit sind komplexe Kommunikationssterukturen entstanden. Durch die Verknüpfung dieser Kommunikationsstrukturen setzen sich Unternehmen und Einrichtungen Bedrohungen aus, auf die angemessen Reagiert werden muss.
+Heutzutage sind Netzwerkstrukturen von Unternehmen und öffentlichen Einrichtungen vielfachen Gefährdungen ausgesetzt. Im Laufe der Zeit sind komplexe Kommunikationsstrukturen entstanden, die diese Gefährdungen unterstreichen. Durch die Verknüpfung dieser Kommunikationsstrukturen setzen sich Unternehmen und Einrichtungen Bedrohungen aus, auf die angemessen reagiert werden muss. \cite{BSI-Leitfaden}
 
 
 \section{Der Begriff Penetrationstest}
-Penetrationstest, kurz Pentest(ing), ist der fachsprachliche Ausdruck für einen umfassenden Sicherheitstest einzelner Rechner oder Netzwerke jeglicher Größe. Unter einem Penetrationstest versteht die Sicherheitsfachperson in der Informationstechnik die Prüfung der Sicherheit möglichst aller Systembestandteile und Anwendungen eines Netzwerks oder Softwaresystems mit Mitteln und Methoden, die ein Angreifer (ugs. „Hacker“) anwenden würde, um unautorisiert in das System einzudringen (Penetration). Der Penetrationstest ermittelt somit die Empfindlichkeit des zu testenden Systems gegen derartige Angriffe. Wesentlicher Teil eines Penetrationstests sind Werkzeuge, die dabei helfen, möglichst alle Angriffsmuster nachzubilden, die sich aus den zahlreichen bekannten Angriffsmethoden herausbilden.\cite{hakSec}
+Penetrationstest haben den Zweck eines umfassenden Sicherheitstest einzelner Rechner oder Netzwerke jeglicher Größe. Unter einem Penetrationstest versteht die Prüfung der Sicherheit möglichst aller Systembestandteile und Anwendungen eines Netzwerks oder Softwaresystems mit Mitteln und Methoden, die ein Angreifer anwenden würde, um unautorisiert in das System einzudringen. \cite{hakSec} Der Penetrationstest ermittelt somit die Angreifbarkeit des zu testenden Systems gegen derartige Angriffe. Wesentlicher Teil eines Penetrationstests sind Tools und Werkzeuge, die dabei helfen, möglichst alle Angriffsmuster nachzubilden, die sich aus den zahlreichen bekannten Angriffsmethoden herausbilden. \cite{hakSec}
+
+
+
+
 
 
 \section{Penetrationstests}
-
-\subsection{Entwicklung von penetrationstests}
-Der Begriff  \dq Penetrationstest\dq und die dazu durchgeführten Methoden wurden 1995 etabliert, als der erste Unix-basierte Schwachstellen-Scanner \dq SATAN\dq \textit{\dq Venema95\dq} veröffentlicht wurde. Das Programm stellte zur damaligen Zeit das erste Tool dar, das automatisiert Rechner auf Schwachstellen untersuchen konnte.\footnote{\href{https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/Studien/Penetrationstest/penetrationstest.pdf?__blob=publicationFile&v=3}{BSI}}
 
 \subsection{Ziele eines Penetrationstest}
 Ziele eines Penetrationstests sind:
@@ -99,13 +104,13 @@ Ziele eines Penetrationstests sind:
     \item die Erhöhung der Sicherheit auf technischer und organisatorischer Ebene und
     \item die Bestätigung der IT-Sicherheit durch einen externen Dritten.
 \end{itemize}
-Durch die ständige Änderung der Bedrohungsbilder und sicherheitsrelevanten Faktoren in der Informationstechnik ist ein Penetrationstest allerdings eher als Momentaufnahme zu begreifen. Im Extremfall kann ein System unmittelbar nach dem Beheben der durch den Test aufgedeckten Schwachstellen durch eine neue Sicherheitslücke wieder verwundbar sein. Allerdings deckt ein Test in der Regel auch die Ursachen auf, welche zu den festgestellten Problemen führen (z. B. Personalmangel). Jedoch ist die Behebung der Ursachen in der Regel Sache des Betreibers der getesteten Systeme und Anwendungen. Die Behebungsmaßnahmen reichen von besserer Betreuung der Systeme und Anwendungen bis hin zur Abschaltung oder Verkauf.
+Durch die ständige Änderung der Bedrohungsbilder und sicherheitsrelevanten Faktoren in der Informationstechnik ist ein Penetrationstest allerdings eher als Momentaufnahme zu begreifen. Im Extremfall kann ein System unmittelbar nach dem Beheben der durch den Test aufgedeckten Schwachstellen durch eine neue Sicherheitslücke wieder verwundbar sein. Allerdings deckt ein Test in der Regel auch die Ursachen auf, welche zu den festgestellten Problemen führen. Jedoch ist die Behebung der Ursachen in der Regel Sache des Betreibers der getesteten Systeme und Anwendungen. Maßnahmen zur Behebung reichen von besserer Betreuung der Systeme und deren Anwendungen bis hin zur Abschaltung oder zum Verkauf.
 
 \subsubsection{Erhöhung der Sicherheit}
 Bevorzugt werden Penetrationstests in Auftrag gegeben mit dem Ziel, die Sicherheit der technischen Systeme zu erhöhen. Hierbei beziehen sich die Tests meistens nur auch technische Aspekte, Themenbereiche wie organisatorische beziehungsweise personelle Infrastruktur werden selten betrachtet.
 \subsubsection{Identifikation der Schwachstellen}
 Im Unterschied zu den anderen Zielen ist die Identifikation hier als Entscheidungskriterium das direkte Ziel des Penetrationstest. So kann beispielsweise vor dem Zusammenschalten zweier Netzwerke geprüft werden, ob ein Eindringen von außen möglich ist. Falls dies durch einen Penetrationstest nachgewiesen wurde, können Maßnahmen zur Sicherung ergriffen werden.
-\subsubsection{Erhöhung der organischen Sicherheit} Eine weitere Besonderheit eines Penetrationstest ist ebenfalls, dass dieser auch die organisatorische sowie die personelle Infrastruktur testet. Hierbei kann die Qualität sowie die Einhaltung der Sicherheitsrichtlinien getestet werden. 
+\subsubsection{Erhöhung der organischen Sicherheit} Eine weitere Besonderheit eines Penetrationstests ist, dass dieser auch die organisatorische sowie die personelle Infrastruktur testet. Hierbei können die Qualität sowie die Einhaltung der Sicherheitsrichtlinien getestet werden. 
 
 \subsection{Ansatzpunkte}
 Für Penetrationstests gibt es mehrere Möglichkeiten und Angriffspunkte. Typische sind Firewalls, Webserver RAS\footnote{Remote Access Service} Zugänge und Funknetze. Hierbei stellt die Firewall einen beliebten Angriffspunkt dar, da sie als Übergang zwischen Internet und Firmennetz dient. 
@@ -116,9 +121,9 @@ Mittlerweile existieren viele Möglichkeiten, IT Systeme ihre Funktionsweise ode
 
 \begin{itemize}
     \item Social Engineering \newline
-    Hierbei handelt es sich um eine zwischenmenschliche Beeinflussung, bei der Menschen mithilfe von privilegiertem Wissen manipuliert werden, um somit sicherheitsrelevante Informationen zu erlangen. Hierbei kann es sich um Informationen wie Passwörter oder persönliche Daten handeln. Bei dieser Technik ist die Variationsmöglichkeit enorm hoch.
+    Hierbei handelt es sich um eine zwischenmenschliche Beeinflussung, bei der Menschen mithilfe von privilegiertem Wissen manipuliert werden, um somit sicherheitsrelevante Informationen zu erlangen. Hierbei kann es sich um Informationen wie Passwörter oder persönliche Daten handeln. Bei dieser Technik ist die Variationsmöglichkeit enorm hoch. 
     \item Umgehung physischer Sicherheitsmaßnahmen \newline
-    Die physische Absicherung der IT Infrastruktur ist eine Grundvoraussetzung zur Gewährleistung der IT-Sicherheit. Falls einem Angreifer die Überwindung der physischen Maßnahmen gelingt, ist es nur eine Frage der Zeit, bis er diese ausnutzt, um zum Beispiel Daten zu manipulieren.
+    Die physische Absicherung der IT-Infrastruktur ist eine Grundvoraussetzung zur Gewährleistung der IT-Sicherheit. Falls einem Angreifer die Überwindung der physischen Maßnahmen gelingt, ist es nur eine Frage der Zeit, bis er diese ausnutzt, um zum Beispiel Daten zu manipulieren.
     \item Netzwerk \newline
     Hierunter versteht man Angriffe, welche unter Nutzung der Funktionalität von Netzwerkprotokollen auf Applikationen, Computer oder Systeme eingesetzt werden. Diese Methodik macht sich meist Schwachstellen in Soft- und Hardware zu nutzen. Hierbei handelt es sich häufig um Sniffing, DoS-Attacken, Session Hijacking oder Ähnliches.
 \end{itemize}
@@ -127,11 +132,11 @@ Mittlerweile existieren viele Möglichkeiten, IT Systeme ihre Funktionsweise ode
 
 \subsection{Grenzen}
 
-Ein Penetrationstest alleine kann aufgrund der ständig neuen Schwachstellen nicht aussagekräftig als alleinige Referenz verwendet werden. Systeme, Applikationen sowie auch Angreifer entwickeln sich stetig weiter. So kann es sein, dass unmittelbar nach einem Penetrationstest bereits eine neue Schwachstelle auf den überprüften Systemen aufgekommen ist. Dennoch ist ein Penetrationstest keinesfalls nutzlos, dieser kann zwar auch bei gründlicher Durchführung keinen absoluten Schutz bieten, sie reduziert aber die potentielle Gefahr eines Angriffs beträchtlich. Daher ist es zu empfehlen, regelmäßige Penetrationstests anzusetzen, um der Vergänglichkeit der Wirkung entgegenzuwirken.\newline Ebenfalls gilt es zu beachten das ein Penetrationstest keine weiteren Maßnahmen wie Sicherheitsprüfungen, Richtlinen und Konzeote ersetzen kann. Ein Penetrationstest ist als Erweiterung der Sicherheitsmaßnahmen zu betrachten.
+Ein Penetrationstest alleine kann aufgrund der ständig neuen Schwachstellen nicht aussagekräftig als alleinige Referenz verwendet werden. Systeme, Applikationen sowie auch Angreifer entwickeln sich stetig weiter. So kann es sein, dass unmittelbar nach einem Penetrationstest bereits eine neue Schwachstelle auf den überprüften Systemen aufgekommen ist. Dennoch ist ein Penetrationstest keinesfalls nutzlos, dieser kann zwar auch bei gründlicher Durchführung keinen absoluten Schutz bieten, sie reduziert aber die potentielle Gefahr eines Angriffs beträchtlich. Daher ist es zu empfehlen, regelmäßige Penetrationstests anzusetzen, um der Vergänglichkeit der Wirkung entgegenzuwirken.\newline Ebenfalls gilt es zu beachten das ein Penetrationstest keine weiteren Maßnahmen wie Sicherheitsprüfungen, Richtlinien und Konzepte ersetzen kann. Ein Penetrationstest ist als Erweiterung der Sicherheitsmaßnahmen zu betrachten.
 
 \subsection{Rechtliches}\label{subsec:rechtliches}
 
-Bei einem Penetrationstest muss penibel darauf geachtet werden, dass man sich zu jedem Zeitpunkt seines Handelns auf der Seite des Gesetzes aufhält und nicht Wiederrechts handelt. Wesentlich lässt sich diese rechtliche Überlegung in drei Punkte aufteilen:
+Bei einem Penetrationstest muss penibel darauf geachtet werden, dass man sich zu jedem Zeitpunkt seines Handelns auf der Seite des Gesetzes aufhält und nicht Widerrechts handelt. Wesentlich lässt sich diese rechtliche Überlegung in drei Punkte aufteilen:
 \begin{itemize}
     \item Rechtliche Überlegungen, die ein Unternehmen oder eine Behörde zur Durchführung eines Penetrationstests veranlassen bzw. motivieren können.
     \item Rechtliche Vorschriften und Grundsätze, die der Auftragnehmer während der Durch- führung eines Penetrationstests beachten sollte und die im Vorfeld des Tests mit dem Auftraggeber geklärt werden sollten.
@@ -143,10 +148,10 @@ Genau genommen existieren keine Vorschriften / Gesetze, welche ein Unternehmen b
     \item des Umgangs mit personenbezogenen Daten,
     \item der Einrichtung und Ausgestaltung eines internen Kontrollsystems.
 \end{itemize}
-Als höchstes Ziel gilt es unternehmensrelevante Daten zu schützen. Daher ergreifen Unternehmen Maßnahmen, um die Verfügbarkeit, Vertraulichkeit sowie die Integrität der Daten sicherzustellen. Zu diesen Maßnahmen zählen Sicherheitskonzepte, Berechtigungskonzepte, Firewallkonzepte und viele mehr.
+Als höchstes Ziel gilt es relevante Daten des Unternehmens, der Behörde bzw. der Orgnisationseinheit zu schützen. Daher ergreifen Unternehmen Maßnahmen, um die Verfügbarkeit, Vertraulichkeit sowie die Integrität der Daten sicherzustellen. Zu diesen Maßnahmen zählen u.a. Sicherheitskonzepte, Berechtigungskonzepte, Firewallkonzepte und viele mehr.
 
 \subsection{Klassifikation}
-Ein Penetrationstest muss nach mehreren Kriterien kategorisiert werden. Hierbei hast das BSI\footnote{Bundesamt für Sicherheit und Informationstechnik} mehrere Kriterien vorgeschlagen. Es muss verschiedene Unterscheidungsmerkmale wie Unfang der geprüften Systeme, die Vorsicht bzw. die Aggressivität des Penetrationstest charakterisieren. Dies dient zu einer effektiven Durchführung mit einem kalkulierten Risiko. \newline In Abbildung \ref{fig:klassifik} ist eine mögliche Klassifikation nach Empfehlung des BSI dargestellt. Links sind die verschiedenen Kriterien aufgelistet, nach denen man den Penetrationstest unterscheiden kann. Rechts hingehen stehen die einzelnen Parameter der Kriterien. \newline Je nach Auftrag muss ein geeigneter Penetrationstest gewählt werden. Nicht alle Kombinationen ergeben einen sinnvollen Aufbau. Als Beispiel lässt sich hier der aggressive Test herannehmen, da dieser nur schlecht mit einer verdeckten Herangehensweise kombiniert werden kann. Folgend werden die sechs Kriterien erläutert.
+Ein Penetrationstest muss nach mehreren Kriterien kategorisiert werden. Hierbei hast das BSI\footnote{Bundesamt für Sicherheit und Informationstechnik} mehrere Kriterien vorgeschlagen, diese werden unten aufgeführt. Es muss verschiedene Unterscheidungsmerkmale, wie bspw. den Umfang der geprüften Systeme, die Vorsicht bzw. die Aggressivität des Penetrationstest, charakterisieren. Dies dient einer effektiven Durchführung mit einem kalkulierten Risiko. \newline In Abbildung \ref{fig:klassifik} ist eine mögliche Klassifikation nach Empfehlung des BSI dargestellt. Links sind die verschiedenen Kriterien aufgelistet, nach denen man den Penetrationstest unterscheiden kann. Rechts hingehen stehen die einzelnen Parameter der Kriterien. \newline Je nach Auftrag muss ein geeigneter Penetrationstest gewählt werden. Nicht alle Kombinationen ergeben einen sinnvollen Aufbau. Als Beispiel lässt sich hier der aggressive Test heranziehen, da dieser nur schlecht mit einer verdeckten Herangehensweise kombiniert werden kann. Folgend werden die sechs Kriterien erläutert.
 
 \begin{figure}[h]
     \centering
@@ -157,14 +162,14 @@ Ein Penetrationstest muss nach mehreren Kriterien kategorisiert werden. Hierbei 
 
 \begin{enumerate}
     \item Informationsbasis \newline Welchen Wissensstand liegt dem Penetrationstester über das Netzwerk vor? Hierbei wird zwischen zwei Parametern unterschieden \textbf{Black-Box}-Test und dem \textbf{White-Box}-Test
-    \item Agressivität \newline  Wie aggressiv soll der Penetrationstest durchgeführt werden. Hierbei muss zwischen den einzelnen Parametern differenziert werden.
+    \item Aggressivität \newline  Wie aggressiv soll der Penetrationstest durchgeführt werden. Hierbei muss zwischen den einzelnen Parametern differenziert werden.
     \begin{itemize}
-        \item Wenn man die niedrigste Aggressivitätsstufe ausgewählt wird, werden die Systeme und Strukturen nur \dq passiv\dq getestet. Hierbei können gefundene Schwachstellen evtl. nicht ausgibig getestet werden.
+        \item Wenn man die niedrigste Aggressivitätsstufe ausgewählt wird, werden die Systeme und Strukturen nur \dq passiv\dq getestet. Hierbei können gefundene Schwachstellen evtl. nicht ausgiebig getestet werden.
         \item Bei der zweiten Stufe werden Schwachstellen nur untersucht, wenn eine Beeinträchtigung des Systems ausgeschlossen werden kann. Daher wird diese Stufe als \dq vorsichtig\dq betitelt.
-        \item Hier wird versucht \dq abzuwägen\dq ob die gefundene Schwachstelle eine Auswirkung auf das System darstellt. Hierbei betrachtet man die Erfolgschancen und deren Konsequenzen.
+        \item Hier wird versucht, \dq abzuwägen\dq, ob die gefundene Schwachstelle eine Auswirkung auf das System darstellt. Hierbei betrachtet man die Erfolgschancen und deren Konsequenzen.
         \item In der Aggressivsten Stufe - \dq aggressiv\dq - werden alle gefundenen Schwachstellen ausgenutzt. Dabei muss bewusst sein, dass Beeinträchtigungen auftreten können.
     \end{itemize}
-    \item Umfang \newline Welche Systeme sollen getestet werden? Grundsätzlich ist eine genaue Analyse nötig, welche Systeme getestet werden. Dies dient dazu, dass keine Systeme übersehen werden oder doppelt behandelt werden. Generell unterscheidet man zwischen drei herangehensweisen. Zum einen die \textbf{fokussierte}, hierbei wird lediglich ein bestimmter Teil genauestens betrachtet, zum anderen der \textbf{begrenze} hier wird eine begrenze Anzahl von Systemen und Diensten untersucht. Zu guter Letzt gibt es noch den \textbf{vollständigen} Test, dieser überprüft alle erreichbaren Systeme.
+    \item Umfang \newline Welche Systeme sollen getestet werden? Grundsätzlich ist eine genaue Analyse nötig, welche Systeme getestet werden. Dies dient dazu, dass keine Systeme übersehen werden oder doppelt behandelt werden. Generell unterscheidet man zwischen drei herangehensweisen. Zum einen die \textbf{fokussierte}, hierbei wird lediglich ein bestimmter Teil genauestens betrachtet, zum anderen der \textbf{begrenzte} hier wird eine begrenzte Anzahl von Systemen und Diensten untersucht. Zu guter Letzt gibt es noch den \textbf{vollständigen} Test, dieser überprüft alle erreichbaren Systeme.
     \item Vorgehensweise \newline Wie sichtbar geht man an den Penetrationstest? Hierbei muss die Frage geklärt werden, ob man neben den primären Sicherheitssystemen auch die sekundären Strukturen / Systeme überprüft. 
     \begin{itemize}
         \item Zum Prüfen der sekundären Sicherheitssysteme verwendet man meist den \textbf{verdeckten} Penetrationstest. Dieser dient dazu in der Erkundungsphase nicht direkt erkannt zu werden und verhindert somit das direkte Enttarnen von Angriffsversuchen.
@@ -173,9 +178,9 @@ Ein Penetrationstest muss nach mehreren Kriterien kategorisiert werden. Hierbei 
     \item Technik \newline Welche Techniken werden bei einem Penetrationstest angewendet? Häufig werden Systeme über das Netzwerk angegriffen, jedoch gibt es auch weitere Möglichkeiten wie zum Beispiel ein Social-Engineering-Angriff oder andere physische Methoden.
     \begin{itemize}
         \item Der \dq klassische\dq Penetrationstest erfolgt über das \textbf{Netzwerk}. Häufig wird das TCP/IP-Protokoll verwendet. Hierbei spricht man von einem IP-basierten Penetrationstest.
-        \item Es existieren aber noch \textbf{wietere Kommunikationsnetze}. Hierbei können Telefon-Netze bzw. auch drahtlose Netze etc. in Erwägung gezogen werden.
+        \item Es existieren aber noch \textbf{weitere Kommunikationsnetze}. Hierbei können Telefon-Netze bzw. auch drahtlose Netze etc. in Erwägung gezogen werden.
         \item Oftmals stellt es eine größere Hürde , in Systeme einzudringen, da zum Beispiel eine Firewall vorhanden ist. Heutzutage stellen Firewalls ein enorm hohes Sicherheitsniveau dar. Daher wird nach alternativen gesucht, um sich Zugang zu den gewünschten Systemen zu verschaffen. An dieser Stelle bietet sich der \textbf{physische Zugriff} oftmals als \dq einfacher / schneller\dq an.
-        \item Oftmals ist es möglich in ein System / netzwerk einzudringen indem man versucht das schwächste Glied in der Kette der Sicherungssysteme anzugreifen. Daher ist es eine beliebte Methode mittels \textbf{Social-Engineering}-Methoden den Mensch anzugreifen. 
+        \item Oftmals ist es möglich in ein System / Netzwerk einzudringen indem man versucht das schwächste Glied in der Kette der Sicherungssysteme anzugreifen. Daher ist es eine beliebte Methode mittels \textbf{Social-Engineering}-Methoden den Mensch anzugreifen. 
     \end{itemize}
     \item Ausgangspunkt \newline Von wo wird der Penetrationstest durchgeführt? Hierbei muss man zwischen internen und externen Penetrationstests unterscheiden. Dabei handelt es sich um den Ausgangspunkt an welchem der Penetrationstester sein Rechner in das Netzwerk hängt.
     \begin{itemize}
@@ -190,18 +195,14 @@ Ein Penetrationstest muss nach mehreren Kriterien kategorisiert werden. Hierbei 
 
 \subsection{Organisatorische Vorraussetzungen}
 
-Im Vorfeld eines Penetrationstests sind mehrere Dinge zu beachten beziehungsweise gewisse vorraussetzungen einzuhalten. Wenn man diese Vorraussetzungen betrachtet ergeben sich folgende Fragestellungen:
+Im Vorfeld eines Penetrationstests sind mehrere Dinge zu beachten beziehungsweise gewisse Voraussetzungen einzuhalten. Wenn man diese Voraussetzungen abgeleitet aus dem Durchführungskonzept betrachtet ergeben sich folgende Fragestellungen:
 \begin{itemize}
     \item Wer ist direkt oder indirekt vom Penetrationstest betroffen?
     \item Sind haftungsrechtliche Risiken angemessen berücksichtigt?
-    \item In welchen zeitraum finden die Penetrationstests statt?
+    \item In welchen Zeitraum finden die Penetrationstests statt?
     \item Wie verhalten wir uns im Falle eines Systemausfalls?
     \item Welcher Aufwand ist mit dem Penetrationstest verbunden?
 \end{itemize}
-
-
-\subsection{Ethische Überlegung}
-
 
 \section{Die Phasen}
 
@@ -218,16 +219,16 @@ In Abbildung \ref{fig:phasen1} sind die fünf Phasen und deren Zusammenhang darg
 
 Der erste Schritt ist zugleich einer der Wichtigsten. 
 Hierbei handelt es sich um die Informationsbeschaffung, auch Reconnaissance genannt. \newline
-Hier unterscheidet sich ein sog. Script-Kiddie\footnote{Ein Scriptkiddie ist ein Stereotyp, das sich alltagssprachlich auf Personen aus dem Bereich der Computersicherheit bezieht. Welche keine fortgeschrittenen Kentnisse haben. \cite{skriptkiddie}} von einem Pentester. \newline Es ist , sich gründlich vorzubereiten, eine Abstimmung der Ziele des Penetrationstest ist von Bedeutung um auch die Vereinbarten Ziele des Penetrationstest zu erfüllen. Die Nichteinhaltung der klar definierten Ziele kann möglicherweise strafrechtliche und/oder zivilrechtliche Konsequenzen \footnote{ siehe, \ref{subsec:rechtliches} Rechtliches} nach sich ziehen. Ebenfalls kann ein Nichteinhalten auch zum Ausfall eines Produktivsystems führen. Es ist also enorm wichtig alle Risiken sowie den Rahmen der Durchführung eindeutig zu definieren und schriftlich festzuhalten. \cite{reconnaissance}
+Hier unterscheidet sich ein sog. Script-Kiddie\footnote{Ein Scriptkiddie ist ein Stereotyp, das sich alltagssprachlich auf Personen aus dem Bereich der Computersicherheit bezieht. Welche keine fortgeschrittenen Kenntnisse haben.} von einem Pentester. \newline Es ist , sich gründlich vorzubereiten, eine Abstimmung der Ziele des Penetrationstest ist von Bedeutung um auch die Vereinbarten Ziele des Penetrationstest zu erfüllen. Die Nichteinhaltung der klar definierten Ziele kann möglicherweise strafrechtliche und/oder zivilrechtliche Konsequenzen \footnote{ siehe, \ref{subsec:rechtliches} Rechtliches} nach sich ziehen. Ebenfalls kann ein Nichteinhalten auch zum Ausfall eines Produktivsystems führen. Es ist also enorm wichtig alle Risiken sowie den Rahmen der Durchführung eindeutig zu definieren und schriftlich festzuhalten. \cite{reconnaissance}
 
 
 \subsection{Informationsbeschaffung}\label{subsec:phase2}
-Da in der ersten Phase sowohl Der Umfang, Ziele Vorgehen und Notfallmaßnahmen etc. festgelegt wurden, kann in diesem Schritt mit der Beschaffung von Informationen über das definierte Ziel begonnen werden. Hierbei gilt es zu versuchen eine möglichst detaillierte Aufstellung zu erstellen. Diese Phase wird auch als \dq Passiver Penetrationstest \dq bezeichnet. Ebenso wird hier versucht potentielle Angriffspunkte bzw. bekannte Schwachstellen zu erlangen. Abhänig von der Größe des Netzwerks bzw. der Anzahl der zu untersuchenden Objekte kann diese Informationsbeschaffung entsprechend Zeit beanspruchen. \newline Hier folgt ein kleines Beispiel: Ein Class-C Netzwerk (256 mögliche IP Adressen) wird hinter einer Firewall vollständig gescannt. So kann ein Portscan (65536 Ports), Tage bis Wochen in Anspruch nehmen.\newline Fernen bietet uns diese Phase eine genaue Übersicht verwendeter Dienste und Anwendungen, sowie möglicherweise deren Spezifikationen wie Versionsnummer, Betriebssystem, Umgebungsvariablen uvm.
+Da in der ersten Phase sowohl der Umfang, Ziele Vorgehen und Notfallmaßnahmen etc. festgelegt wurden, kann in diesem Schritt mit der Beschaffung von Informationen über das definierte Ziel begonnen werden. Hierbei gilt es zu versuchen eine möglichst detaillierte Aufstellung zu erstellen. Diese Phase wird auch als \dq Passiver Penetrationstest \dq bezeichnet. Ebenso wird hier versucht potentielle Angriffspunkte bzw. bekannte Schwachstellen zu erlangen. Abhängig von der Größe des Netzwerks bzw. der Anzahl der zu untersuchenden Objekte kann diese Informationsbeschaffung entsprechend Zeit beanspruchen. \newline Hier folgt ein kleines Beispiel: Ein Class-C Netzwerk (256 mögliche IP Adressen) wird hinter einer Firewall vollständig gescannt. So kann ein Portscan (65536 Ports), Tage bis Wochen in Anspruch nehmen.\newline Fernen bietet uns diese Phase eine genaue Übersicht verwendeter Dienste und Anwendungen, sowie möglicherweise deren Spezifikationen wie Versionsnummer, Betriebssystem, Umgebungsvariablen u.v.m.
 
 
 \subsection{Risikoanalyse / Bewertung der Informationen}\label{subsec:phase3}
 
-Nun haben wir aus Phase \ref{subsec:phase2} eine Vielzahl an Informationen. Um mit diesen Informationen ein erfolgreiches, nachvollziehbares und auch wirtschaftliches Ergebnis erziehlen zu können, müssen die gesammelten Informationen bewertet werden um so deren Relevanz festzustellen. Die Bewertungskriterien müssen auf die vorab festgelegten Parameter und Ziele zutreffen. Durch diese Bewertung lassen sich die Herangehensweisen für die Phase \ref{subsec:phase4} \dq Exploitation / Aktive Angriffe\dq. Näher lässt sich dieser Schritt als eine Reduktion der Zielsysteme für Phase \ref{subsec:phase4} \dq Exploitation / Aktive Angriffe\dq beschreiben. Die grundsätzliche Bewertung muss ausführlich begründet werden da diese Auswirkungen auf den restlichen Penetrationstest haben.
+Nun haben wir aus Phase \ref{subsec:phase2} eine Vielzahl an Informationen. Um mit diesen Informationen ein erfolgreiches, nachvollziehbares und auch wirtschaftliches Ergebnis erzielen zu können, müssen die gesammelten Informationen bewertet werden um so deren Relevanz festzustellen. Die Bewertungskriterien müssen auf die vorab festgelegten Parameter und Ziele zutreffen. Durch diese Bewertung lassen sich die Herangehensweisen für die Phase \ref{subsec:phase4} \dq Exploitation / Aktive Angriffe\dq. Näher lässt sich dieser Schritt als eine Reduktion der Zielsysteme für Phase \ref{subsec:phase4} \dq Exploitation / Aktive Angriffe\dq beschreiben. Die grundsätzliche Bewertung muss ausführlich begründet werden da diese Auswirkungen auf den restlichen Penetrationstest haben.
 
 
 \subsection{Exploitation / Aktive Angriffe}\label{subsec:phase4}
@@ -236,7 +237,7 @@ Anhand der in Phase \ref{subsec:phase3} in Betracht gezogenen Bewertung der Schw
 
 \subsection{Bericht / Auswertung}\label{subsec:phase5}
 
-Zu guter Letzt wird neben der Aufzeichnung der einzelnen Phasen auch ein Abschlussbericht erstellt. Der Bericht dient zur Nachvollziehbarkeit der einzelnen Tests und der dadurch offen gelegten Schwachstellen garantieren. Diese Ergebnisse sollten abschließend in einem Abschlussgespräch erörtert und behandelt werden.
+Neben der Aufzeichnung der einzelnen Phasen wird zuletzt auch ein Abschlussbericht erstellt. Der Bericht dient zur Nachvollziehbarkeit der einzelnen Tests und der dadurch offen gelegten Schwachstellen garantieren. Diese Ergebnisse sollten abschließend in einem Abschlussgespräch erörtert und Maßnahmen daraus abgeleitet werden. Diese Maßnahmen sollten anschließend umgesetzt werden um somit das Potential der Schwachstellen zu entschärfen.
 
 \section{Vorgehensweise}
 Folgend in Abbildung \ref{fig:vorgehen} wird das detaillierte vorgehen Schritt für Schritt der Phasen 1-5 niedergelegt.
@@ -250,7 +251,7 @@ Jedoch muss man erwähnen, dass es trotz dem möglich ist das Szenarien auftrete
 
 \section{Abschließend}
 
-Abschließend lässt sich ein Penetrationstest sehr gut in eindeutige Phasen Kategorisieren. Das ermöglicht einen standardisierten Prozess der Anwendung und legt auch den Grundstein für eine qualitative Durchführung sowie eine fundierte Bewertung des Ergebnisses. Wenn man sich an die Klassifikationen hält und die einzelnen Phasen durchführt sowie rechtlich alle Aspekte beachtet, steht einem erfolgreichen Penetrationstest nichts mehr im Weg. \newline Dennoch kann es zu Szenarien kommen, in denen eine Durchführung der Norm abweicht. Hierbei sollte man darauf achten, dass man sich bewusst ist, wie man handelt und sich deren Auswirkungen im Klaren sein.
+Abschließend lässt sich ein Penetrationstest sehr gut in eindeutige Phasen kategorisieren. Das ermöglicht einen standardisierten Prozess der Anwendung und legt auch den Grundstein für eine qualitative Durchführung sowie eine fundierte Bewertung des Ergebnisses. Wenn man sich an die Klassifikationen hält und die einzelnen Phasen durchführt sowie rechtlich alle Aspekte beachtet, steht einem erfolgreichen Penetrationstest nichts mehr im Weg. \newline Dennoch kann es zu Szenarien kommen, in denen eine Durchführung der Norm abweicht. Hierbei sollte man darauf achten, dass man sich bewusst ist, wie man handelt und sich deren Auswirkungen im Klaren sein. Das oben niedergelegte Durchführungskonzept ermöglicht es, einen Penetrationstest in kalkulierbarem Umfang umzusetzen und ein qualifiziertes Ergebnis zu erhalten. Die Gesetzen Kriterien und Strukturen sogen für ein gleichbleibendes qualitatives Ergebnis. Ebenfalls wird es dadurch möglich vorab die Beeinträchtigung des alltäglichen Betriebs eingegrenzt. Durch den Bericht ist es dem Auftraggeber möglich Maßnahmen zu ergreifen um somit seine Systeme sowie sein Netzwerk gegenüber angriffen zu härten.
 
 
 \listoffigures
